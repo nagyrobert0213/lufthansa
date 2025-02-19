@@ -12,6 +12,8 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html
 
+COPY docker/entrypoint.sh /entrypoint.sh
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-scripts --no-autoloader
@@ -21,4 +23,8 @@ EXPOSE 80
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' \
   /etc/apache2/sites-available/000-default.conf
 
+RUN chmod +x /entrypoint.sh
+
 CMD ["apache2-foreground"]
+
+ENTRYPOINT ["/entrypoint.sh"]

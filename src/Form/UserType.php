@@ -31,7 +31,7 @@ class UserType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('firstName', TextType::class, [
+            ->add('first_name', TextType::class, [
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'First name is required']),
                     new Assert\Length([
@@ -40,7 +40,7 @@ class UserType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('lastName', TextType::class, [
+            ->add('last_name', TextType::class, [
                 'constraints' => [
                     new Assert\NotBlank(['message' => 'Last name is required']),
                     new Assert\Length([
