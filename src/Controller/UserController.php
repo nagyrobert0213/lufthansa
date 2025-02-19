@@ -76,10 +76,9 @@ final class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $result['status'] = 'success';
-            $result['user'] = $user;
+            $jsonUser = $this->serializer->serialize($user, 'json', ['groups' => 'user:read']);
 
-            return new JsonResponse($result);
+            return JsonResponse::fromJsonString($jsonUser, Response::HTTP_CREATED);
         }
 
         $errors = [];
