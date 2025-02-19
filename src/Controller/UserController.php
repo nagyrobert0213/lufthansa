@@ -27,7 +27,7 @@ final class UserController extends AbstractController
     {
     }
 
-    #[Route('/user', name: 'users', methods: ['GET'])]
+    #[Route('/users', name: 'users_index', methods: ['GET'])]
     public function index(Request $request): Response
     {
         $type = $request->query->get('type', 'json');
@@ -41,7 +41,7 @@ final class UserController extends AbstractController
         return $this->formatResponse($users, $type);
     }
 
-    #[Route('/user/{id}', name: 'user', methods: ['GET'])]
+    #[Route('/users/{id}', name: 'users_show', methods: ['GET'])]
     public function show(int $id, Request $request): Response
     {
         $type = $request->query->get('type', 'json');
@@ -55,7 +55,7 @@ final class UserController extends AbstractController
         return $this->formatResponse($user, $type);
     }
 
-    #[Route('/user', name: 'user_store', methods: ['POST'])]
+    #[Route('/users', name: 'users_store', methods: ['POST'])]
     public function store(
         Request                     $request,
         EntityManagerInterface      $entityManager,
